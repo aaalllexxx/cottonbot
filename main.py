@@ -50,7 +50,8 @@ async def cmd_products(message: types.Message):
             create_image(i["image_1"])
             image = InputFile("temp/temp.jpg")
             await bot.send_photo(message.chat.id, image, caption=f"{i['name']}\n\n{i['desc']}\n\n\n{env.base_url + 'product/' + i['id']}")
-    await message.reply("Не могу достучаться до сайта(")
+    else:
+        await message.reply("Не могу достучаться до сайта(")
 
 
 async def main():
