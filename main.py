@@ -37,7 +37,11 @@ async def cmd_help(message: types.Message):
 
 @dp.message_handler(commands=["products"])
 async def cmd_products(message: types.Message):
-    resp = requests.get(env.base_url + "api/get")
+    try:
+        resp = requests.get(env.base_url + "api/get")
+    except:
+        await message.reply("Не могу достучаться до сайта(")
+        return
     response = []
     if resp.status_code == 200:
         resp_json: list = resp.json()["response"]
